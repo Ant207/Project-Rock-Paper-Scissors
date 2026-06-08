@@ -4,50 +4,45 @@
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
   return choices[Math.floor(Math.random() * 3)];
-  
 }
 
-function playGame() {
+function playRound(playerSelection) {
+  const computerSelection = getComputerChoice();
+  const resultMessage = document.getElementById("result-message");
+  const scoreDisplay = document.getElementById("score");
 
+  let result;
 
-  function playRound(playerSelection) {
-    const computerSelection = getComputerChoice();
-    const resultMessage = document.getElementById("result-message");
-    const scoreDisplay = document.getElementById("score");
-
-    let result;
-
-
-
-
-    if (playerSelection === computerSelection) {
-      result = `It's a tie! You both chose ${playerSelection}.`;
-    } else if (
-      (playerSelection === "rock" && computerSelection === "scissors") ||
-      (playerSelection === "paper" && computerSelection === "rock") ||
-      (playerSelection === "scissors" && computerSelection === "paper")
-    ) {
-      playerScore++;
-       result = `You win! ${playerSelection} beats ${computerSelection}.`;
-    } else {
-      computerScore++;
-       result = `You lose! ${computerSelection} beats ${playerSelection}.`;
-    }
+  if (playerSelection === computerSelection) {
+    result = `It's a tie! You both chose ${playerSelection}.`;
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+  ) {
+    playerScore++;
+    result = `You win! ${playerSelection} beats ${computerSelection}.`;
+  } else {
+    computerScore++;
+    result = `You lose! ${computerSelection} beats ${playerSelection}.`;
   }
-
+  
+  resultMessage.textContent = result;
+  scoreDisplay.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
+  
   if (playerScore === 5) {
-    resultMessage.textContext = "You won the game! Refresh to play again.";
+    resultMessage.textContent = "You won the game! Refresh to play again.";
     disableButtons();
   } else if (computerScore === 5) {
-    resultMessage.textContext = "The computer won the game! Refresh to play again.";
+    resultMessage.textContent = "The computer won the game! Refresh to play again.";
     disableButtons();
   }
 }
 
 function disableButtons() {
-    document.querySelectorAll("#buttons button").forEach(btn => {
-        btn.disabled = true;
-    });
+  document.querySelectorAll("#buttons button").forEach(btn => {
+    btn.disabled = true;
+  });
 }
 
 
