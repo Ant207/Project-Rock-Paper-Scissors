@@ -45,7 +45,6 @@ function disableButtons() {
   });
 }
 
-
 document.getElementById("rock").addEventListener("click", () => playRound("rock"));
 document.getElementById("paper").addEventListener("click", () => playRound("paper"));
 document.getElementById("scissors").addEventListener("click", () => playRound("scissors"));
